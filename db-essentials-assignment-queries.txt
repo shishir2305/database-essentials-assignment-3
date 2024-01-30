@@ -1,0 +1,26 @@
+1. Fetch all users name from database.
+Query -> SELECT name FROM users;
+
+2. Fetch all tweets of user by user id most recent tweets first.
+Query -> SELECT * FROM tweets WHERE userId = 3 ORDER BY createdAt DESC;
+
+3. Fetch like count of particular tweet by tweet id.
+Query -> SELECT COUNT(*) AS like_count FROM likes WHERE tweetId = 1;
+
+4. Fetch retweet count of particular tweet by tweet id.
+Query -> SELECT COUNT(*) AS retweet_count FROM retweets WHERE tweetId = 1;
+
+5. Fetch comment count of particular tweet by tweet id.
+Query -> SELECT COUNT(*) AS comment_count FROM tweets WHERE parentId = 1;
+
+6. Fetch all user’s name who have retweeted particular tweet by tweet id.
+Query -> SELECT u.name FROM users u JOIN retweets r ON u.id = r.userId WHERE r.tweetId = 1;
+
+7. Fetch all commented tweet’s content for particular tweet by tweet id. 
+Query -> SELECT contents FROM tweets WHERE parentId = 1;
+
+8. Fetch user’s timeline (All tweets from users whom I am following with tweet content and user name who has tweeted it)
+Query -> SELECT u.name,t.contents FROM tweets t JOIN users u ON t.userId = u.id WHERE t.userId IN (SELECT followingId FROM follows WHERE userId = 3) ORDER BY t.createdAt DESC;
+
+
+
